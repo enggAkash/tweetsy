@@ -1,7 +1,7 @@
 package com.engineerakash.tweetsy.api
 
-class Resource {
-    sealed class Data<T>(data: T)
-    sealed class Error<T>(error: T)
-    object Loading
+sealed interface Resource<out T> {
+    data class Success<out T>(val data: T) : Resource<T>
+    data class Error(val errorMessage: String) : Resource<Nothing>
+    object Loading : Resource<Nothing>
 }

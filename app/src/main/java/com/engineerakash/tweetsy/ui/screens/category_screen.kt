@@ -36,12 +36,16 @@ fun CategoryItem(category: String) {
 }
 
 @Composable
-fun CategoryList(categories: List<String>) {
+fun CategoryList(categories: List<String>, modifier: Modifier = Modifier) {
 
     if (categories.isEmpty()) {
-        CircularProgressIndicator(modifier = Modifier.padding(10.dp))
+        CircularProgressIndicator(modifier = modifier.padding(10.dp))
     } else {
-        LazyVerticalGrid(columns = GridCells.Fixed(2), contentPadding = PaddingValues(5.dp)) {
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2),
+            contentPadding = PaddingValues(5.dp),
+            modifier = modifier
+        ) {
             items(categories.size) {
                 CategoryItem(category = categories[it])
             }

@@ -27,8 +27,16 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
             isMinifyEnabled = false
+            isShrinkResources = false
+            isDebuggable = true
+        }
+        release {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            isDebuggable = false
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -46,11 +54,7 @@ android {
     }
     buildFeatures {
         compose = true
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        buildConfig = true
     }
 }
 
@@ -65,6 +69,9 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(libs.retrofit)
     implementation(libs.hilt.android)
+    implementation(libs.converter.gson)
+    implementation(libs.lifecycle.viewmodel.compose)
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
     ksp(libs.hilt.android.compiler)
 
